@@ -54,17 +54,18 @@ source .venv/bin/activate
 pip install --no-cache-dir -r requirements.txt  
 ```
 
-5. Copy your fast.ai model file (which should have a name export.pkl)  built from training the model  into  the "start/classify" directory within your Function App project
+5. Copy your fast.ai model file (which should have a name export.pkl)  built from training the model  into  the "start/classify" directory within your Function App project. This has been tested with the Bear detector model from fast.ai course-v4 (beta). 
 
 6. Run the test locally
 
 ```
 func start
-#  In a browser on your machine you can test the local Azure Function by visiting: 
+```
+In a browser on your machine you can test the local Azure Function by visiting: 
 
 "http://localhost:7071/api/classify?img=http://3.bp.blogspot.com/-S1scRCkI3vY/UHzV2kucsPI/AAAAAAAAA-k/YQ5UzHEm9Ss/s1600/Grizzly%2BBear%2BWildlife188.jpg"
 
-```
+
 ## Create Resources in Azure and Publish
 
 1. Create Azure Function App using Azure CLI
@@ -74,7 +75,7 @@ func start
 
 az group create --name [[YOUR Function App name]]  --location westus2
 az appservice plan create --name [[YOUR Function App name]] -g [[YOUR Function App name]] --sku B1 --is-linux
-az storage account create --name [[Your Storage Account Name]] -l westus2 --sku Standard_LRS -g fastaideploy
+az storage account create --name [[Your Storage Account Name]] -l westus2 --sku Standard_LRS -g [[YOUR Function App name]]
 az functionapp create --name [[YOUR Function App name]] -g [[YOUR Function App name]] --storage-account [[Your Storage Account Name]] --plan [[YOUR Function App name]] --runtime python --runtime-version 3.7 --functions-version 3 --disable-app-insights 
 ```
 2. Publish to Azure
@@ -89,8 +90,14 @@ func azure functionapp publish [[YOUR Function App name] --no-build
 
 ```
 
-It will take a few minutes to publish and bring up the Azure functions with you fast.ai model deployed and exposed as a http endpoint.  Then you can find the URL by running the following command:  ```func azure functionapp list-functions [[YOUR Function App name] --show-keys``` . Append ```&img=[[Your Image URL to run thru model]]``` to get prediction from the model running in the Azure Functions. 
+It will take a few minutes to publish and bring up the Azure functions with you fast.ai model deployed and exposed as a http endpoint.  Then you can find the URL by running the following command:  ```func azure functionapp list-functions [[YOUR Function App name] --show-keys``` . Append ```&img=[[Your Image URL to run thru model]]``` to the URL on a browser to get predictions from the model running in the Azure Functions. 
 
+## Deleting Resources
+To delete all the resources (and avoiding any charges) after you are done, run the following Azure CLI command:
+```
+az group delete --name [[YOUR Function App name]] --yes
+
+```
 Azure Functions provides other options like auto scaling, larger instances, monitoring with Application Insights etc. 
 
 ## Notes
