@@ -44,6 +44,7 @@ git clone https://github.com/gopitk/fastai2deployazure.git ~/fastai2deployazure
 cp -r ~/fastai2deployazure/start ..
 
 ```
+The main files are **[__init__.py](https://github.com/gopitk/fastai2deployazure/blob/master/start/classify/__init__.py)** and **[predict.py](https://github.com/gopitk/fastai2deployazure/blob/master/start/classify/predict.py)** in ```start/classify``` dirtectory. The one in the repo works for the Bear detector example in fast.ai. It takes input from the HTTP GET request in "img" parameter which is a URL to an image which will be run through the model for prediction of the type of bear.  You can adapt the same easily for deploying other models.
 
 4. Create and activate Python virtualenv to setup fastai2 along with dependencies
 
