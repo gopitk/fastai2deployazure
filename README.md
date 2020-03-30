@@ -1,6 +1,6 @@
 # Deploy Fast.AI Models to Azure
 
-Samples for serverless deployment of fastai2 models to Azure Functions
+Samples for serverless deployment of fastai2 models to Azure Functions. 
 
 ## Pre-requisites
 
@@ -14,9 +14,11 @@ On a Linux system or Windows (WSL or WSL2) ensure you have the following install
 3. The [Azure CLI](https://docs.microsoft.com/en-us/cli/azure/install-azure-cli) 
 4. Python 3.7
 
+Note: You can also use Azure Cloud Shell which comes preinstalled with Azure CLI and Functions Core Tools. 
+
 ## Develop and Test Locally
 
-You can develop for serverless deployment on Azure functions on your Linux machine locally or a development VM (like the Azure Data Science VM) on the cloud. Run the following commands to setup your Azure Functions project locally are 
+You can develop for serverless deployment on Azure functions on your Linux machine locally or a development VM (like the Azure Data Science VM) on the cloud or Azure Cloud Shell. Run the following commands to setup your Azure Functions project locally.
 
 1. Create a Function App project directory and start directory
 
@@ -63,7 +65,7 @@ func start
 "http://localhost:7071/api/classify?img=http://3.bp.blogspot.com/-S1scRCkI3vY/UHzV2kucsPI/AAAAAAAAA-k/YQ5UzHEm9Ss/s1600/Grizzly%2BBear%2BWildlife188.jpg"
 
 ```
-## Create Resources in Azure and Publis
+## Create Resources in Azure and Publish
 
 1. Create Azure Function App using Azure CLI
 
